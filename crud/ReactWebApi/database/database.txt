@@ -1,0 +1,8 @@
+ create database Crud
+ use Crud
+ create table Employee(
+ Id int Primary key identity,
+ Name varchar(20) not null,
+ age varchar(10) not null
+ )
+ select *from Employee
