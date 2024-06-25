@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
@@ -7,8 +7,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Crud = () => {
   const [data, setData] = useState([]);
@@ -19,121 +19,117 @@ const Crud = () => {
 
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
-  const [isactive, setIsactive] = useState(0);
+
+  const isActive = useRef(false);
+  const [editIsActive, setEditIsActive] = useState(false);
 
   const [editId, setEditId] = useState("");
-  const [editname, setEditName] = useState("");
-  const [editage, setEditAge] = useState("");
-  const [editisActive, setEditIsactive] = useState(0);
+  const [editName, setEditName] = useState("");
+  const [editAge, setEditAge] = useState("");
 
   const handleEdit = (id) => {
     handleShow();
-    axios.get(`https://localhost:7271/api/Employees/${id}`)
-    .then((result)=>{
-      setEditName(result.data.name);
-      setEditAge(result.data.age);
-     setEditIsactive(result.data.isactive === 1 || result.data.isactive === "1");
-   
-      setEditId(id);
-     
-    })
-    .catch((error) => {
-      toast.error(error);
-    });
+    axios
+      .get(`https://localhost:7271/api/Employees/${id}`)
+      .then((result) => {
+        setEditName(result.data.name);
+        setEditAge(result.data.age);
+        setEditIsActive(result.data.isActive);
+        setEditId(id);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   const handleDelete = (id) => {
-    if (window.confirm("Are You sure delete") == true) {
-     axios.delete(`https://localhost:7271/api/Employees/${id}`)
-     .then((result)=>{
-      if(result.status===200){
-        toast.success("Employee Has Been Deleted");
-        getData();
-      }
-     }).catch((error) => {
-      toast.error(error);
-    });
+    if (window.confirm("Are you sure you want to delete this employee?")) {
+      axios
+        .delete(`https://localhost:7271/api/Employees/${id}`)
+        .then((result) => {
+          if (result.status === 200) {
+            toast.success("Employee has been deleted");
+            getData();
+          }
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
     }
   };
 
   const handleUpdate = () => {
-
-    const url=`https://localhost:7271/api/Employees/${editId}`;
-    const data={
-      "Id":editId,
-      "Name": editname,
-      "Age": editage,
-      "Isactive": editisActive.toString() // Convert to string if needed meny database mai string kara hy 
+    const url = `https://localhost:7271/api/Employees/${editId}`;
+    const data = {
+      Id: editId,
+      Name: editName,
+      Age: editAge,
+      IsActive: editIsActive,
     };
-    axios.put(url, data).then((result) => {
-      handleClose();
-      getData();
-      clear();
-      toast.success("Employee Has Been Updated");
-    }).catch((error) => {
-      toast.error(error);
-    });
-
-    
+    axios
+      .put(url, data)
+      .then((result) => {
+        handleClose();
+        getData();
+        clear();
+        toast.success("Employee has been updated");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   const getData = () => {
     axios
       .get("https://localhost:7271/api/Employees")
       .then((result) => {
-        setData(result.data)
+        console.log(result.data); // Debugging: Log data to console
+        setData(result.data);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       });
   };
 
   useEffect(() => {
-    getData()
+    getData();
   }, []);
 
   const handleSave = () => {
-    const url = 'https://localhost:7271/api/Employees';
+    const url = "https://localhost:7271/api/Employees";
     const data = {
-      "Name": name,
-      "Age": age,
-      "Isactive": isactive.toString() // Convert to string if needed meny database mai string kara hy 
+      Name: name,
+      Age: age,
+      IsActive: isActive.current,
     };
-    axios.post(url, data).then((result) => {
-      getData();
-      clear();
-      toast.success("Employee Has Been Added");
-    }).catch((error) => {
-      toast.error(error);
-    });
+    axios
+      .post(url, data)
+      .then((result) => {
+        getData();
+        clear();
+        toast.success("Employee has been added");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   const clear = () => {
-    setName('');
-    setAge('');
-    setIsactive(0);
-    setEditName('');
-    setEditAge('');
-    setEditIsactive(0);
-    setEditId('');
+    setName("");
+    setAge("");
+    isActive.current = false;
+    setEditName("");
+    setEditAge("");
+    setEditIsActive(false);
+    setEditId("");
   };
 
   const handleActiveChange = (e) => {
-    if(e.target.checked){
-      setIsactive(1);
-         }
-         else{
-          setIsactive(0);
-         }
+    isActive.current = e.target.checked;
   };
 
   const handleEditActiveChange = (e) => {
-    if(e.target.checked){
-      setEditIsactive(1);
-         }
-         else{
-          setEditIsactive(0);
-         }
+    setEditIsActive(e.target.checked);
   };
 
   return (
@@ -160,16 +156,13 @@ const Crud = () => {
             />
           </Col>
           <Col>
-            <input
-              type="checkbox"
-              value={isactive}
-              checked={isactive===1?true:false}
-onChange={(e)=>handleActiveChange(e)}
-            />
+            <input type="checkbox" onChange={handleActiveChange} />
             <label>IsActive</label>
           </Col>
           <Col>
-            <Button variant="primary" onClick={handleSave}>Submit</Button>
+            <Button variant="primary" onClick={handleSave}>
+              Submit
+            </Button>
           </Col>
         </Row>
       </Container>
@@ -185,7 +178,7 @@ onChange={(e)=>handleActiveChange(e)}
                 type="text"
                 className="form-control"
                 placeholder="Enter Name"
-                value={editname}
+                value={editName}
                 onChange={(e) => setEditName(e.target.value)}
               />
             </Col>
@@ -194,15 +187,15 @@ onChange={(e)=>handleActiveChange(e)}
                 type="text"
                 className="form-control"
                 placeholder="Enter Age"
-                value={editage}
+                value={editAge}
                 onChange={(e) => setEditAge(e.target.value)}
               />
             </Col>
             <Col>
               <input
-                       type="checkbox"
-                       checked={editisActive ===1?true:false}
-                       onChange={(e)=>handleEditActiveChange(e)} value={editisActive}
+                type="checkbox"
+                checked={editIsActive}
+                onChange={handleEditActiveChange}
               />
               <label>IsActive</label>
             </Col>
@@ -225,16 +218,17 @@ onChange={(e)=>handleActiveChange(e)}
             <th>Name</th>
             <th>Age</th>
             <th>IsActive</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {data && data.length > 0
-            ? data.map((item, index) => (
+          {data && data.length > 0 ? (
+            data.map((item, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{item.name}</td>
                 <td>{item.age}</td>
-                <td>{item.isactive}</td>
+                <td>{item.isActive ? "1" : "0"}</td>
                 <td>
                   <button
                     type="button"
@@ -254,7 +248,11 @@ onChange={(e)=>handleActiveChange(e)}
                 </td>
               </tr>
             ))
-            : "Swagger API closed or loading..."}
+          ) : (
+            <tr>
+              <td colSpan="5">No data available</td>
+            </tr>
+          )}
         </tbody>
       </Table>
     </>

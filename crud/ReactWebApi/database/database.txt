@@ -3,6 +3,23 @@
  create table Employee(
  Id int Primary key identity,
  Name varchar(20) not null,
- age varchar(10) not null
+ age varchar(10) not null,
+ IsActive bit
  )
  select *from Employee
+
+
+
+vs need
+bracket color
+auto rename tag
+live server
+prettier code 
+simple react snippets
+
+dotnet add package Microsoft.AspNetCore.Cors
+
+this project need install
+npm install react-bootstrap bootstrap
+npm i axios
+npm install react-toastify --save

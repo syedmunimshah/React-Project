@@ -19,12 +19,11 @@ public partial class CrudContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     { }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Employee__3214EC072BC882B8");
+            entity.HasKey(e => e.Id).HasName("PK__Employee__3214EC07A67CACA6");
 
             entity.ToTable("Employee");
 
@@ -32,9 +31,6 @@ public partial class CrudContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("age");
-            entity.Property(e => e.Isactive)
-                .HasMaxLength(20)
-                .IsUnicode(false);
             entity.Property(e => e.Name)
                 .HasMaxLength(20)
                 .IsUnicode(false);
