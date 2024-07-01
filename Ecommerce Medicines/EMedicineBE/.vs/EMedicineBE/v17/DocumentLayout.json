@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|d:\\code\\react\\react-project\\ecommerce medicines\\emedicinebe\\controllers\\medicinescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|solutionrelative:controllers\\medicinescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|d:\\code\\react\\react-project\\ecommerce medicines\\emedicinebe\\models\\dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|solutionrelative:models\\dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|d:\\code\\react\\react-project\\ecommerce medicines\\emedicinebe\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
+              "ToolTip": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "Controllers\\UsersController.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACEAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T22:18:47.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MedicinesController.cs",
+              "DocumentMoniker": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Controllers\\MedicinesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MedicinesController.cs",
+              "ToolTip": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Controllers\\MedicinesController.cs",
+              "RelativeToolTip": "Controllers\\MedicinesController.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACMAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T22:16:43.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DAL.cs",
+              "DocumentMoniker": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Models\\DAL.cs",
+              "RelativeDocumentMoniker": "Models\\DAL.cs",
+              "ToolTip": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Models\\DAL.cs",
+              "RelativeToolTip": "Models\\DAL.cs",
+              "ViewState": "AQIAAH8AAAAAAAAAAAA0wJsAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T20:57:29.408Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

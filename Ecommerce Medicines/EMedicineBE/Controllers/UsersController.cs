@@ -15,6 +15,7 @@ namespace EMedicineBE.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IConfiguration _configuration;
+       
         public UsersController(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -36,9 +37,8 @@ namespace EMedicineBE.Controllers
         public Response login(Users users)
         {
             DAL dal = new DAL();
-            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("").ToString());
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedCS").ToString());
             Response response = dal.Login(users, connection);
-         
             return response;
         }
 
@@ -47,12 +47,22 @@ namespace EMedicineBE.Controllers
         public Response viewUser(Users users)
         {
             DAL dal = new DAL();
-            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("").ToString());
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedCS").ToString());
             Response response = dal.viewUser(users, connection);
             return response;
         }
     
         [HttpPost]
-        [Route("update")]
+        [Route("updateProfile")]
+        public Response updateProfile(Users users) 
+        {
+            DAL dal = new DAL();
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("EMedCS").ToString());
+            Response response = dal.updateProfile(users, connection);
+            return response;
+
+        }
+
+
     }
 }
