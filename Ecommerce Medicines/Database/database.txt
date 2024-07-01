@@ -1,0 +1,49 @@
+create database EMedicine;
+use EMedicine
+
+create table Users(
+ID INT IDENTITY(1,1) PRIMARY KEY,
+FirstName varchar(100),
+LastName VARCHAR(100),
+Password VARCHAR(100),
+Email Varchar(100),
+Fund decimal(18,2),
+Type Varchar(100),
+Status Int,
+CreatedOn DateTime
+)
+
+
+Create table Medicines(ID INT IDENTITY(1,1) PRIMARY KEY,Name varchar(100),Manufacturer varchar(100),UnitPrice decimal(18,2),
+Discount Decimal(18,2),Quantity Int,ExpDate DateTime,ImageUrl VARCHAR(100),Status Int)
+
+Create Table Cart(ID Int Identity(1,1) PRIMARY KEY,UserId Int,MedicineID int,UnitPrice Decimal(18,2),Discount Decimal(18,2),
+Quantity int,TotalPrice Decimal(18,2))
+
+
+Create table Orders(ID INT IDENTITY(1,1) PRIMARY KEY,UserID int,OrderNo varchar(100),OrderTotal Decimal(18,2),OrderStatus Varchar(100))
+
+
+Create Table OrderItems(ID INT IDENTITY(1,1) PRIMARY KEY,OrderID int,MedicineID int,UnitPrice Decimal(18,2),Discount Decimal(18,2),
+Quantity Int,TotalPrice Decimal(18,2))
+
+Select * from Users
+Select * from Medicines
+Select * from Cart
+Select * from Orders
+Select * from OrderItems
+
+
+create table damy(
+Id int primary key identity,
+name varchar(100),
+)
+insert into damy(name)values('noor')
+DELETE FROM damy WHERE id = 2;
+DBCC CHECKIDENT (damy, RESEED, 1);
+
+
+
+
+select * from damy
+
