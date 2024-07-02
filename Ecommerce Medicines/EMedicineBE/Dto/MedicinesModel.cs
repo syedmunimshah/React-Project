@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EMedicineBE.Models
+namespace EMedicineBE.Dto
 {
-    public class Medicines
+    public class MedicinesModel
     {
-        public int ID { get; set; }
         public string Name { get; set; }
         public string Manufacturer { get; set; }
         public decimal UnitPrice { get; set; }
@@ -18,6 +17,5 @@ namespace EMedicineBE.Models
 
         public int Status { get; set; }
         public string Type { get; set; }
-
     }
 }

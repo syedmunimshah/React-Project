@@ -1,54 +1,50 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EMedicineBE.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using EMedicineBE.Models;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EMedicineBE.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MedicinesController : ControllerBase
+    public class AdminController : ControllerBase
     {
         private readonly IConfiguration _configuration;
         private readonly string Connection;
 
-        public MedicinesController(IConfiguration configuration)
+        public AdminController(IConfiguration configuration)
         {
             _configuration = configuration;
             Connection = _configuration.GetConnectionString("EMedicine").ToString();
         }
 
         [HttpPost]
-        [Route("addToCart")]
-        public Response addToCart(Cart cart) 
+        [Route("addUpdateMedicine")]
+        public Response addUpdateMedicine(Medicines medicines)
         {
-            DAL dal = new DAL();
-            SqlConnection connection = new SqlConnection(Connection);
-            Response response = dal.addToCart(cart, connection);
-            return response;
-                }
 
-        [HttpPost]
-        [Route("placeOrder")]
-        public Response placeOrder(Users users)
-        {
+
             DAL dal = new DAL();
             SqlConnection connection = new SqlConnection(Connection);
-            Response response = dal.placeOrder(users, connection);
+            Response response = dal.addUpdateMedicine(medicines,connection);
             return response;
 
         }
 
         [HttpPost]
-        [Route("orderList")]
-
-        public Response orderList(Users users)
+        [Route("userList")]
+        public Response userList()
         {
             DAL dal = new DAL();
             SqlConnection connection = new SqlConnection(Connection);
-            Response response = dal.orderList(users, connection);
+            Response response = dal.userList(connection);
             return response;
+
         }
     }
 }

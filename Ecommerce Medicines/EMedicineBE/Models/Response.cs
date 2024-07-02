@@ -7,6 +7,7 @@ namespace EMedicineBE.Models
 {
     public class Response
     {
+        public object Data { get; set; }
         public int StatusCode { get; set; }
         public string StatusMessage { get; set; }
         public List<Users> listUsers { get; set; }
@@ -15,7 +16,7 @@ namespace EMedicineBE.Models
         public List<Medicines> listMedicines { get; set; }
         public Medicines medicine { get; set; }
 
-        public List<Cart> lsitCart { get; set; }
+        public List<Cart> listCart { get; set; }
 
         public List<Orders> listOrders { get;  set; }
         public Orders Order { get; set; }
