@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|d:\\code\\react\\react-project\\ecommerce medicines\\emedicinebe\\controllers\\medicinescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|solutionrelative:controllers\\medicinescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|d:\\code\\react\\react-project\\ecommerce medicines\\emedicinebe\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|d:\\code\\react\\react-project\\ecommerce medicines\\emedicinebe\\models\\dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\models\\dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|solutionrelative:models\\dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|d:\\code\\react\\react-project\\ecommerce medicines\\emedicinebe\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|d:\\code\\react\\react-project\\ecommerce medicines\\emedicinebe\\dto\\medicinesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|solutionrelative:dto\\medicinesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|d:\\code\\react\\react-project\\ecommerce medicines\\emedicinebe\\dto\\ordersmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F82A7073-064F-493D-8700-750059744A42}|EMedicineBE.csproj|solutionrelative:dto\\ordersmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,32 +26,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
-              "ToolTip": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACEAAAASAAAA",
+              "DocumentIndex": 0,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
+              "ToolTip": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Controllers\\AdminController.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAcwCEAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T22:18:47.457Z",
+              "WhenOpened": "2024-07-02T22:16:24.358Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MedicinesController.cs",
-              "DocumentMoniker": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Controllers\\MedicinesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\MedicinesController.cs",
-              "ToolTip": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Controllers\\MedicinesController.cs",
-              "RelativeToolTip": "Controllers\\MedicinesController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACMAAAA0AAAA",
+              "DocumentIndex": 2,
+              "Title": "MedicinesModel.cs",
+              "DocumentMoniker": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Dto\\MedicinesModel.cs",
+              "RelativeDocumentMoniker": "Dto\\MedicinesModel.cs",
+              "ToolTip": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Dto\\MedicinesModel.cs",
+              "RelativeToolTip": "Dto\\MedicinesModel.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwBIAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T22:16:43.271Z",
+              "WhenOpened": "2024-07-02T22:05:36.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrdersModel.cs",
+              "DocumentMoniker": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Dto\\OrdersModel.cs",
+              "RelativeDocumentMoniker": "Dto\\OrdersModel.cs",
+              "ToolTip": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Dto\\OrdersModel.cs",
+              "RelativeToolTip": "Dto\\OrdersModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-02T21:45:18.512Z",
               "EditorCaption": ""
             },
             {
@@ -58,7 +75,7 @@
               "RelativeDocumentMoniker": "Models\\DAL.cs",
               "ToolTip": "D:\\Code\\React\\React-Project\\Ecommerce Medicines\\EMedicineBE\\Models\\DAL.cs",
               "RelativeToolTip": "Models\\DAL.cs",
-              "ViewState": "AQIAAH8AAAAAAAAAAAA0wJsAAAAuAAAA",
+              "ViewState": "AQIAAKoAAAAAAAAAAAAMwO4AAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-01T20:57:29.408Z",
               "EditorCaption": ""

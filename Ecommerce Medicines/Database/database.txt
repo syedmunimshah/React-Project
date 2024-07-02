@@ -2,16 +2,10 @@ create database EMedicine;
 use EMedicine
 
 create table Users(
-ID INT IDENTITY(1,1) PRIMARY KEY,
-FirstName varchar(100),
-LastName VARCHAR(100),
-Password VARCHAR(100),
-Email Varchar(100),
-Fund decimal(18,2),
-Type Varchar(100),
-Status Int,
-CreatedOn DateTime
-)
+ID INT IDENTITY(1,1) PRIMARY KEY,FirstName varchar(100),LastName VARCHAR(100),Password VARCHAR(100),Email Varchar(100),
+Fund decimal(18,2),Type Varchar(100),Status Int,CreatedOn DateTime)
+
+
 
 
 Create table Medicines(ID INT IDENTITY(1,1) PRIMARY KEY,Name varchar(100),Manufacturer varchar(100),UnitPrice decimal(18,2),
@@ -34,16 +28,181 @@ Select * from Orders
 Select * from OrderItems
 
 
-create table damy(
-Id int primary key identity,
-name varchar(100),
-)
-insert into damy(name)values('noor')
-DELETE FROM damy WHERE id = 2;
-DBCC CHECKIDENT (damy, RESEED, 1);
+
+
+
+CREATE PROCEDURE sp_register
+    @FirstName VARCHAR(100),
+    @LastName VARCHAR(100),
+    @Password VARCHAR(100),
+    @Email VARCHAR(100),
+    @Fund DECIMAL(18,2),
+    @Type VARCHAR(100),
+    @Status INT,
+    @CreatedOn DATETIME
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO Users (FirstName, LastName, Password, Email, Fund, Type, Status, CreatedOn)
+    VALUES (@FirstName, @LastName, @Password, @Email, @Fund, @Type, @Status, @CreatedOn);
+
+    IF @@ROWCOUNT > 0
+    BEGIN
+        RETURN 1; -- Registration successful
+    END
+    ELSE
+    BEGIN
+        RETURN 0; -- Registration failed
+    END
+END;
+
+
+CREATE PROCEDURE sp_login
+    @Email VARCHAR(100),
+    @Password VARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT ID, FirstName, LastName, Email, Type
+    FROM Users
+    WHERE Email = @Email AND Password = @Password;
+END;
+
+CREATE PROCEDURE sp_viewUser
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT ID, FirstName, LastName, Password, Email, Fund, Type, Status, CreatedOn
+    FROM Users
+    WHERE ID = @ID;
+END;
 
 
 
 
-select * from damy
+
+CREATE PROCEDURE sp_updateProfile
+    @ID INT,
+    @FirstName VARCHAR(100),
+    @LastName VARCHAR(100),
+    @Password VARCHAR(100),
+    @Email VARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Users
+    SET FirstName = @FirstName,
+        LastName = @LastName,
+        Password = @Password,
+        Email = @Email
+    WHERE ID = @ID;
+END;
+
+
+
+
+CREATE PROCEDURE sp_AddToCart
+    @UserId INT,
+    @MedicineID INT,
+    @UnitPrice DECIMAL(18,2),
+    @Discount DECIMAL(18,2),
+    @Quantity INT,
+    @TotalPrice DECIMAL(18,2)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO Cart (UserId, MedicineID, UnitPrice, Discount, Quantity, TotalPrice)
+    VALUES (@UserId, @MedicineID, @UnitPrice, @Discount, @Quantity, @TotalPrice);
+END;
+
+
+
+
+
+CREATE PROCEDURE sp_PlaceOrder
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+  --yaha kia ayega??
+END;
+
+
+
+
+
+CREATE PROCEDURE sp_OrderList
+    @Type VARCHAR(100),
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT o.ID, o.OrderNo, o.OrderTotal, o.OrderStatus
+    FROM Orders o
+    INNER JOIN Users u ON o.UserId = u.ID
+    WHERE o.UserId = @ID
+      AND u.Type = @Type;
+END;
+
+
+
+CREATE PROCEDURE sp_addUpdateMedicine
+    @Name VARCHAR(100),
+    @Manufacturer VARCHAR(100),
+    @UnitPrice DECIMAL(18, 2),
+    @Discount DECIMAL(18, 2),
+    @Quantity INT,
+    @ExpDate DATETIME,
+    @ImageUrl VARCHAR(100),
+    @Status INT,
+    @Type VARCHAR(100)  -- Assuming @Type parameter is used for some specific purpose
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @MedicineID INT;
+
+    -- Check if medicine already exists based on Name and Manufacturer
+    SELECT @MedicineID = ID
+    FROM Medicines
+    WHERE Name = @Name AND Manufacturer = @Manufacturer;
+
+    IF @MedicineID IS NOT NULL
+    BEGIN
+        -- Update existing medicine
+        UPDATE Medicines
+        SET UnitPrice = @UnitPrice,
+            Discount = @Discount,
+            Quantity = @Quantity,
+            ExpDate = @ExpDate,
+            ImageUrl = @ImageUrl,
+            Status = @Status
+        WHERE ID = @MedicineID;
+    END
+    ELSE
+    BEGIN
+        -- Insert new medicine
+        INSERT INTO Medicines (Name, Manufacturer, UnitPrice, Discount, Quantity, ExpDate, ImageUrl, Status)
+        VALUES (@Name, @Manufacturer, @UnitPrice, @Discount, @Quantity, @ExpDate, @ImageUrl, @Status);
+    END;
+    
+    SELECT @@ROWCOUNT AS RowsAffected;  -- Return the number of rows affected
+END;
+
+
+
+
+
+
+
+
+
 

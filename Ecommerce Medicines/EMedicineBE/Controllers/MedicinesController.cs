@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using EMedicineBE.Models;
 using System.Data.SqlClient;
+using EMedicineBE.Dto;
 
 namespace EMedicineBE.Controllers
 {
@@ -21,21 +22,21 @@ namespace EMedicineBE.Controllers
 
         [HttpPost]
         [Route("addToCart")]
-        public Response addToCart(Cart cart) 
+        public Response addToCart(CartModel cartModel) 
         {
             DAL dal = new DAL();
             SqlConnection connection = new SqlConnection(Connection);
-            Response response = dal.addToCart(cart, connection);
+            Response response = dal.addToCart(cartModel, connection);
             return response;
                 }
 
         [HttpPost]
         [Route("placeOrder")]
-        public Response placeOrder(Users users)
+        public Response placeOrder(UsersModel usersModel)
         {
             DAL dal = new DAL();
             SqlConnection connection = new SqlConnection(Connection);
-            Response response = dal.placeOrder(users, connection);
+            Response response = dal.placeOrder(usersModel, connection);
             return response;
 
         }
@@ -43,11 +44,11 @@ namespace EMedicineBE.Controllers
         [HttpPost]
         [Route("orderList")]
 
-        public Response orderList(Users users)
+        public Response orderList(UsersModel usersModel)
         {
             DAL dal = new DAL();
             SqlConnection connection = new SqlConnection(Connection);
-            Response response = dal.orderList(users, connection);
+            Response response = dal.orderList(usersModel, connection);
             return response;
         }
     }

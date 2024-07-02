@@ -74,25 +74,30 @@ namespace EMedicineBE.Models
             return response;
         }
 
-        public Response viewUser(Users users, SqlConnection connection)
+        public Response viewUser(UsersModel usersModel, SqlConnection connection)
         {
-            SqlDataAdapter da = new SqlDataAdapter("p_viewUser", connection);
+            SqlDataAdapter da = new SqlDataAdapter("sp_viewUser", connection);
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.AddWithValue("@ID", users.ID);
+            da.SelectCommand.Parameters.AddWithValue("@ID", usersModel.ID);
+
             DataTable dt = new DataTable();
             da.Fill(dt);
+
             Response response = new Response();
             Users user = new Users();
+
             if (dt.Rows.Count > 0)
             {
                 user.ID = Convert.ToInt32(dt.Rows[0]["ID"]);
                 user.FirstName = Convert.ToString(dt.Rows[0]["FirstName"]);
                 user.LastName = Convert.ToString(dt.Rows[0]["LastName"]);
-                user.Email = Convert.ToString(dt.Rows[0]["Email"]);
-                user.Type = Convert.ToString(dt.Rows[0]["Type"]);
-                user.Fund = Convert.ToDecimal(dt.Rows[0]["Fund"]);
-                user.CreatedOn = Convert.ToDateTime(dt.Rows[0]["CreatedOn"]);
                 user.Password = Convert.ToString(dt.Rows[0]["Password"]);
+                user.Email = Convert.ToString(dt.Rows[0]["Email"]);
+                user.Fund = Convert.ToDecimal(dt.Rows[0]["Fund"]);
+                user.Type = Convert.ToString(dt.Rows[0]["Type"]);
+                user.Status = Convert.ToInt32(dt.Rows[0]["Status"]);
+                user.CreatedOn = Convert.ToDateTime(dt.Rows[0]["CreatedOn"]);
+
                 response.StatusCode = 200;
                 response.StatusMessage = "User exists";
             }
@@ -100,22 +105,25 @@ namespace EMedicineBE.Models
             {
                 response.StatusCode = 100;
                 response.StatusMessage = "User does not exist";
-                response.Data = user;
+                user = null; // Set user to null when not found
             }
-            return response;
 
+            response.user = user;
+            return response;
         }
 
-    
-        public Response updateProfile(Users users,SqlConnection connection)
+
+
+        public Response updateProfile(UsersModel usersModel, SqlConnection connection)
         {
             Response response = new Response();
             SqlCommand cmd = new SqlCommand("sp_updateProfile", connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@FirstName", users.FirstName);
-            cmd.Parameters.AddWithValue("@LastName", users.LastName);
-            cmd.Parameters.AddWithValue("@Password", users.Password);
-            cmd.Parameters.AddWithValue("@Email", users.Email);
+            cmd.Parameters.AddWithValue("@ID", usersModel.ID);
+            cmd.Parameters.AddWithValue("@FirstName", usersModel.FirstName);
+            cmd.Parameters.AddWithValue("@LastName", usersModel.LastName);
+            cmd.Parameters.AddWithValue("@Password", usersModel.Password);
+            cmd.Parameters.AddWithValue("@Email", usersModel.Email);
             connection.Open();
             int i = cmd.ExecuteNonQuery();
             connection.Close();
@@ -127,23 +135,23 @@ namespace EMedicineBE.Models
             else
             {
                 response.StatusCode = 100;
-                response.StatusMessage = "Some Error Occured.Try after sometime";
+                response.StatusMessage = "No record updated. User ID might not exist or no changes were made.";
             }
             return response;
 
         }
 
-        public Response addToCart(Cart cart,SqlConnection connection)
+        public Response addToCart(CartModel cartModel, SqlConnection connection)
         {
             Response response=new Response();
             SqlCommand cmd = new SqlCommand("sp_AddToCart", connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@UserId",cart.UserId);
-            cmd.Parameters.AddWithValue("@UnitPrice", cart.UnitPrice);
-            cmd.Parameters.AddWithValue("@Discount", cart.Discount);
-            cmd.Parameters.AddWithValue("@Quantity", cart.Quantity);
-            cmd.Parameters.AddWithValue("@TotalPrice", cart.TotalPrice);
-            cmd.Parameters.AddWithValue("@MedicineID", cart.MedicineID);
+            cmd.Parameters.AddWithValue("@UserId", cartModel.UserId);
+            cmd.Parameters.AddWithValue("@UnitPrice", cartModel.UnitPrice);
+            cmd.Parameters.AddWithValue("@Discount", cartModel.Discount);
+            cmd.Parameters.AddWithValue("@Quantity", cartModel.Quantity);
+            cmd.Parameters.AddWithValue("@TotalPrice", cartModel.TotalPrice);
+            cmd.Parameters.AddWithValue("@MedicineID", cartModel.MedicineID);
             connection.Open();
             int i = cmd.ExecuteNonQuery();
             connection.Close();
@@ -161,12 +169,12 @@ namespace EMedicineBE.Models
         }
 
 
-        public Response placeOrder(Users users, SqlConnection connection) 
+        public Response placeOrder(UsersModel usersModel, SqlConnection connection) 
         {
         Response response = new Response();
             SqlCommand cmd = new SqlCommand("sp_PlaceOrder",connection);
             cmd.CommandType= CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@ID", users.ID);
+            cmd.Parameters.AddWithValue("@ID", usersModel.ID);
             connection.Open();
             int i = cmd.ExecuteNonQuery();
             connection.Close();
@@ -183,14 +191,14 @@ namespace EMedicineBE.Models
             return response;
         }
 
-        public Response orderList(Users users, SqlConnection connection)
+        public Response orderList(UsersModel usersModel, SqlConnection connection)
         {
             Response response = new Response();
             List<Orders> listOrder = new List<Orders>();
             SqlDataAdapter da = new SqlDataAdapter("sp_OrderList",connection);
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.AddWithValue("@Type", users.Type);
-            da.SelectCommand.Parameters.AddWithValue("@ID", users.ID);
+            da.SelectCommand.Parameters.AddWithValue("@Type", usersModel.Type);
+            da.SelectCommand.Parameters.AddWithValue("@ID", usersModel.ID);
             DataTable dt = new DataTable();
             da.Fill(dt);
             if (dt.Rows.Count > 0) 
@@ -228,7 +236,7 @@ namespace EMedicineBE.Models
         }
 
 
-        public Response addUpdateMedicine(Medicines medicines, SqlConnection connection)
+        public Response addUpdateMedicine(MedicinesModel medicines, SqlConnection connection)
         {
             Response response = new Response();
             SqlCommand cmd = new SqlCommand("sp_addUpdateMedicine", connection);
