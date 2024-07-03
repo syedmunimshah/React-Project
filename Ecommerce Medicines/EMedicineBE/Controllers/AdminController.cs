@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using EMedicineBE.Dto;
 
 namespace EMedicineBE.Controllers
 {
@@ -25,7 +26,7 @@ namespace EMedicineBE.Controllers
 
         [HttpPost]
         [Route("addUpdateMedicine")]
-        public Response addUpdateMedicine(Medicines medicines)
+        public Response addUpdateMedicine(MedicinesModel medicines)
         {
 
 

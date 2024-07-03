@@ -38,21 +38,21 @@ namespace EMedicineBE.Controllers
         [HttpPost]
         [Route("login")]
 
-        public Response login(UsersModel usersModel)
+        public Response login(LoginModel loginModel)
         {
             DAL dal = new DAL();
             SqlConnection connection = new SqlConnection(Connection);
-            Response response = dal.Login(usersModel, connection);
+            Response response = dal.Login(loginModel, connection);
             return response;
         }
 
         [HttpPost]
         [Route("viewUser")]
-        public Response viewUser(UsersModel usersModel)
+        public Response viewUser(UsersModelID usersModelID)
         {
             DAL dal = new DAL();
             SqlConnection connection = new SqlConnection(Connection);
-            Response response = dal.viewUser(usersModel, connection);
+            Response response = dal.viewUser(usersModelID, connection);
             return response;
         }
     

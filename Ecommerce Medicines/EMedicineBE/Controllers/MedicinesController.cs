@@ -44,11 +44,11 @@ namespace EMedicineBE.Controllers
         [HttpPost]
         [Route("orderList")]
 
-        public Response orderList(UsersModel usersModel)
+        public Response orderList(UsersModelTYPEID usersmodeltYPEID)
         {
             DAL dal = new DAL();
             SqlConnection connection = new SqlConnection(Connection);
-            Response response = dal.orderList(usersModel, connection);
+            Response response = dal.orderList(usersmodeltYPEID, connection);
             return response;
         }
     }

@@ -28,7 +28,7 @@ Select * from Orders
 Select * from OrderItems
 
 
-
+DELETE FROM Users 
 
 
 CREATE PROCEDURE sp_register
@@ -106,19 +106,17 @@ END;
 
 
 
-CREATE PROCEDURE sp_AddToCart
+alter PROCEDURE sp_AddToCart
     @UserId INT,
     @MedicineID INT,
-    @UnitPrice DECIMAL(18,2),
-    @Discount DECIMAL(18,2),
-    @Quantity INT,
-    @TotalPrice DECIMAL(18,2)
-AS
+    @Quantity INT
+   
+as
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO Cart (UserId, MedicineID, UnitPrice, Discount, Quantity, TotalPrice)
-    VALUES (@UserId, @MedicineID, @UnitPrice, @Discount, @Quantity, @TotalPrice);
+    INSERT INTO Cart (UserId, MedicineID,  Quantity)
+    VALUES (@UserId, @MedicineID,@Quantity);
 END;
 
 
@@ -152,6 +150,8 @@ BEGIN
       AND u.Type = @Type;
 END;
 
+select * from Orders
+select * from Users
 
 
 CREATE PROCEDURE sp_addUpdateMedicine
@@ -163,7 +163,7 @@ CREATE PROCEDURE sp_addUpdateMedicine
     @ExpDate DATETIME,
     @ImageUrl VARCHAR(100),
     @Status INT,
-    @Type VARCHAR(100)  -- Assuming @Type parameter is used for some specific purpose
+    @Type VARCHAR(100) =null  -- Assuming @Type parameter is used for some specific purpose
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -199,6 +199,14 @@ END;
 
 
 
+CREATE PROCEDURE sp_userList
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT ID, FirstName, LastName, Password, Email, Fund, Type, Status, CreatedOn
+    FROM Users
+END
 
 
 
